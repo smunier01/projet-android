@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Quand on click sur le bouton "clear"
+     *
      * @param v
      */
     public void clearOnClick(View v) {
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Quand on click sur le bouton "envoyer" pour s'identifier
+     *
      * @param v
      */
     public void sendOnClick(View v) {
@@ -59,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         LogTask p = new LogTask(this);
         p.execute();
         boolean result = false;
-        
+
         try {
 
             result = p.get();

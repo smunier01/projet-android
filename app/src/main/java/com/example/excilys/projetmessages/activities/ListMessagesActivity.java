@@ -19,8 +19,6 @@ import java.util.HashMap;
  */
 public class ListMessagesActivity extends ListActivity {
 
-    ArrayList<HashMap<String, String>> messagesList;
-
     private String username;
     private String password;
 
@@ -34,8 +32,6 @@ public class ListMessagesActivity extends ListActivity {
         username = settings.getString("username", "");
         password = settings.getString("password", "");
 
-        messagesList = new ArrayList<>();
-
         // Task récupérant la liste des messages
 
         GetListMessagesTask p = new GetListMessagesTask(this, username, password);
@@ -45,30 +41,11 @@ public class ListMessagesActivity extends ListActivity {
 
     /**
      * Met à jour la liste des messages
-     * @param s String contenant les messages
+     * @param messages ArrayList contenant les messages
      */
-    public void updateMessages(String s) {
+    public void updateMessages(ArrayList<HashMap<String, String> > messages) {
 
-        String[] messages = s.split(";");
-
-        for (String message : messages) {
-
-            String[] tmp = message.split(":");
-
-            if (tmp.length < 2) {
-                continue;
-            }
-
-            HashMap<String, String> msg = new HashMap<>();
-
-            msg.put("name", tmp[0]);
-            msg.put("message", tmp[1]);
-
-            messagesList.add(0, msg);
-        }
-
-
-        ListAdapter adapter = new SimpleAdapter(ListMessagesActivity.this, messagesList, R.layout.list_item, new String[] {"name", "message"}, new int[] { R.id.name, R.id.message });
+        ListAdapter adapter = new SimpleAdapter(ListMessagesActivity.this, messages, R.layout.list_item, new String[] {"login", "message"}, new int[] { R.id.name, R.id.message });
 
         setListAdapter(adapter);
     }

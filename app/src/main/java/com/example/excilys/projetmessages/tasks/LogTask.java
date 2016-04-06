@@ -2,14 +2,7 @@ package com.example.excilys.projetmessages.tasks;
 
 import android.os.AsyncTask;
 
-import com.example.excilys.projetmessages.mappers.InputStreamToString;
 import com.example.excilys.projetmessages.activities.MainActivity;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 
 /**
  * AsyncTask permettant de s'identifier
@@ -27,40 +20,19 @@ public class LogTask extends AsyncTask<String, Void, Boolean> {
 
     @Override
     protected void onPreExecute() {
+
         username = act.getUsernameField().getText().toString();
         password = act.getPasswordField().getText().toString();
+
     }
 
     @Override
     protected Boolean doInBackground(String... strings) {
 
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-        boolean result = false;
-        try {
-            url = new URL("http://formation-android-esaip.herokuapp.com/connect/" + username + "/" + password);
+        RestService.auth(username, password);
 
-            urlConnection = (HttpURLConnection) url.openConnection();
+        return RestService.connect();
 
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-            String s = InputStreamToString.convert(in);
-
-            if (s.equals("true")) {
-                result = true;
-            } else {
-                result = false;
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-        }
-
-        return result;
     }
 
     @Override

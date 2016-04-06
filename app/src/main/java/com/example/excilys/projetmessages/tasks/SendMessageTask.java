@@ -35,29 +35,7 @@ public class SendMessageTask extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... strings) {
 
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-
-        try {
-            String msgEncoded = URLEncoder.encode(message, "UTF-8").replace("+", "%20");
-
-            url = new URL("http://formation-android-esaip.herokuapp.com/message/" + username + "/" + password + "/" + msgEncoded);
-
-            urlConnection = (HttpURLConnection) url.openConnection();
-
-            urlConnection.getInputStream();
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-
-        }
+        RestService.sendMessage(username, message);
 
         return null;
     }

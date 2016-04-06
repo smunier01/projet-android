@@ -10,11 +10,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * AsyncTask récupérant les messages
  */
-public class GetListMessagesTask extends AsyncTask<String, Void, String> {
+public class GetListMessagesTask extends AsyncTask<String, Void, ArrayList<HashMap<String, String> >> {
 
     private ListMessagesActivity act;
 
@@ -33,10 +35,13 @@ public class GetListMessagesTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected ArrayList<HashMap<String, String> > doInBackground(String... strings) {
 
         String result = null;
 
+        return RestService.getMessages();
+
+        /*
         URL url = null;
         HttpURLConnection urlConnection = null;
 
@@ -61,12 +66,11 @@ public class GetListMessagesTask extends AsyncTask<String, Void, String> {
 
         }
 
-
-        return result;
+        */
     }
 
     @Override
-    protected void onPostExecute(String messages) {
+    protected void onPostExecute(ArrayList<HashMap<String, String> > messages) {
         super.onPostExecute(messages);
 
         act.updateMessages(messages);
