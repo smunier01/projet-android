@@ -1,8 +1,9 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.tasks;
 
 import android.os.AsyncTask;
-import android.view.View;
-import android.widget.ProgressBar;
+
+import com.example.excilys.projetmessages.InputStreamToString;
+import com.example.excilys.projetmessages.activities.ListMessagesActivity;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -10,6 +11,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * AsyncTask récupérant les messages
+ */
 public class GetListMessagesTask extends AsyncTask<String, Void, String> {
 
     private ListMessagesActivity act;
@@ -40,7 +44,6 @@ public class GetListMessagesTask extends AsyncTask<String, Void, String> {
             url = new URL("http://formation-android-esaip.herokuapp.com/messages/" + username + "/" + password);
 
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestProperty("Content-Type", "application/json");
 
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 

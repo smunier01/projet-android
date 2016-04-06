@@ -1,15 +1,17 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.tasks;
 
 import android.os.AsyncTask;
 
-import java.io.BufferedInputStream;
+import com.example.excilys.projetmessages.activities.SendMessageActivity;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
-
+/**
+ * AsyncTask permettant d'envoyer un message
+ */
 public class SendMessageTask extends AsyncTask<String, Void, Void> {
 
     private SendMessageActivity act;
@@ -32,7 +34,6 @@ public class SendMessageTask extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... strings) {
-
 
         URL url = null;
         HttpURLConnection urlConnection = null;
@@ -64,6 +65,6 @@ public class SendMessageTask extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-        act.taskOK();
+        act.messageSent();
     }
 }

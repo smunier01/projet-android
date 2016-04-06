@@ -1,21 +1,24 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.activities;
 
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.example.excilys.projetmessages.R;
+import com.example.excilys.projetmessages.tasks.GetListMessagesTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Activité affichant la liste des messages
+ */
 public class ListMessagesActivity extends ListActivity {
 
-    // Hashmap for ListView
     ArrayList<HashMap<String, String>> messagesList;
 
     private String username;
@@ -31,15 +34,19 @@ public class ListMessagesActivity extends ListActivity {
         username = settings.getString("username", "");
         password = settings.getString("password", "");
 
-        messagesList = new ArrayList<HashMap<String, String>>();
+        messagesList = new ArrayList<>();
 
-        ListView lv = getListView();
+        // Task récupérant la liste des messages
 
         GetListMessagesTask p = new GetListMessagesTask(this, username, password);
         p.execute();
 
     }
 
+    /**
+     * Met à jour la liste des messages
+     * @param s String contenant les messages
+     */
     public void updateMessages(String s) {
 
         String[] messages = s.split(";");
@@ -52,7 +59,7 @@ public class ListMessagesActivity extends ListActivity {
                 continue;
             }
 
-            HashMap<String, String> msg = new HashMap<String, String>();
+            HashMap<String, String> msg = new HashMap<>();
 
             msg.put("name", tmp[0]);
             msg.put("message", tmp[1]);
@@ -66,6 +73,10 @@ public class ListMessagesActivity extends ListActivity {
         setListAdapter(adapter);
     }
 
+    /**
+     * Event listener actualisant la liste des messages
+     * @param view
+     */
     public void refreshOnClick(View view) {
 
         GetListMessagesTask p = new GetListMessagesTask(this, username, password);
@@ -73,19 +84,4 @@ public class ListMessagesActivity extends ListActivity {
 
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

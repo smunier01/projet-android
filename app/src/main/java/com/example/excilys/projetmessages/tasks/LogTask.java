@@ -1,6 +1,9 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.tasks;
 
 import android.os.AsyncTask;
+
+import com.example.excilys.projetmessages.InputStreamToString;
+import com.example.excilys.projetmessages.activities.MainActivity;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -8,7 +11,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-
+/**
+ * AsyncTask permettant de s'identifier
+ */
 public class LogTask extends AsyncTask<String, Void, Boolean> {
 
     private MainActivity act;

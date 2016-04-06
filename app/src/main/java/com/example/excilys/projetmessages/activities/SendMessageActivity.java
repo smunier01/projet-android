@@ -1,4 +1,4 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.example.excilys.projetmessages.R;
+import com.example.excilys.projetmessages.tasks.SendMessageTask;
 
 public class SendMessageActivity extends AppCompatActivity {
 
@@ -31,6 +30,10 @@ public class SendMessageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Envoi le message
+     * @param view
+     */
     public void sendMessageOnClick(View view) {
 
         SendMessageTask p = new SendMessageTask(this, username, password, messageEditText.getText().toString());
@@ -38,7 +41,8 @@ public class SendMessageActivity extends AppCompatActivity {
 
     }
 
-    public void taskOK() {
+
+    public void messageSent() {
         finish();
     }
 }

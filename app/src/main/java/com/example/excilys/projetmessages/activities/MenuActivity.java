@@ -1,4 +1,4 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +8,27 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.excilys.projetmessages.R;
+
+/**
+ * Menu principal
+ */
 public class MenuActivity extends AppCompatActivity {
 
+    /**
+     * Pour aller vers la liste des messages
+     * @param v
+     */
     public void listMessagesOnClick(View v) {
         Intent intent = new Intent(this, ListMessagesActivity.class);
 
         startActivity(intent);
     }
 
+    /**
+     * Pour aller vers le formulaire de création de message
+     * @param v
+     */
     public void sendMessageOnClick(View v) {
         Intent intent = new Intent(this, SendMessageActivity.class);
 
