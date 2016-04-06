@@ -2,7 +2,7 @@ package com.example.excilys.projetmessages.tasks;
 
 import android.os.AsyncTask;
 
-import com.example.excilys.projetmessages.InputStreamToString;
+import com.example.excilys.projetmessages.mappers.InputStreamToString;
 import com.example.excilys.projetmessages.activities.ListMessagesActivity;
 
 import java.io.BufferedInputStream;

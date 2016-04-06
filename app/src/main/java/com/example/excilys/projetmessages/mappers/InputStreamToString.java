@@ -1,4 +1,4 @@
-package com.example.excilys.projetmessages;
+package com.example.excilys.projetmessages.mappers;
 
 import java.io.BufferedReader;
 import java.io.IOException;

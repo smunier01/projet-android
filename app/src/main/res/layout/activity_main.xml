@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.MainActivity">
-
+    <!--
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -17,11 +17,12 @@
         android:layout_alignParentStart="true"
         android:id="@+id/linearLayout"
         android:weightSum="1">
-
+    -->
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:id="@+id/header">
 
             <TextView
                 android:layout_width="match_parent"
@@ -29,12 +30,15 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/login_title"
                 android:id="@+id/titleTextView" />
+
         </LinearLayout>
 
         <ScrollView
+            android:layout_below="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scrollView" >
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_marginBottom="58dp">
 
             <LinearLayout
                 android:orientation="vertical"
@@ -73,10 +77,13 @@
         </ScrollView>
 
         <LinearLayout
+
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:weightSum="1">
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
 
             <Button
                 android:layout_width="wrap_content"
@@ -95,7 +102,7 @@
                 android:onClick="sendOnClick"/>
 
         </LinearLayout>
-
+    <!--
     </LinearLayout>
-
+    -->
 </RelativeLayout>
