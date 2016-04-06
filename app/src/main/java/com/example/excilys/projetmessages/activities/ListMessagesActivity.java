@@ -73,6 +73,8 @@ public class ListMessagesActivity extends ListActivity {
         setListAdapter(adapter);
     }
 
+
+
     /**
      * Event listener actualisant la liste des messages
      * @param view

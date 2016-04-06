@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.example.excilys.projetmessages.R;
 import com.example.excilys.projetmessages.tasks.LogTask;
 
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         LogTask p = new LogTask(this);
         p.execute();
         boolean result = false;
-
+        
         try {
 
             result = p.get();
