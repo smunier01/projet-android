@@ -19,22 +19,14 @@ import java.util.HashMap;
  */
 public class ListMessagesActivity extends ListActivity {
 
-    private String username;
-    private String password;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_messages);
 
-        SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.sharedPrefFile), Context.MODE_PRIVATE);
-
-        username = settings.getString("username", "");
-        password = settings.getString("password", "");
-
         // Task récupérant la liste des messages
 
-        GetListMessagesTask p = new GetListMessagesTask(this, username, password);
+        GetListMessagesTask p = new GetListMessagesTask(this, 10, 0);
         p.execute();
 
     }
@@ -58,7 +50,7 @@ public class ListMessagesActivity extends ListActivity {
      */
     public void refreshOnClick(View view) {
 
-        GetListMessagesTask p = new GetListMessagesTask(this, username, password);
+        GetListMessagesTask p = new GetListMessagesTask(this, 10, 0);
         p.execute();
 
     }

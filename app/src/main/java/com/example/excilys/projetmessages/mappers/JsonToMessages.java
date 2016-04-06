@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class jsonToArrayList {
+public class JsonToMessages {
     public static ArrayList<HashMap<String, String>> convert(String json) {
 
         ArrayList<HashMap<String, String> > result = new ArrayList<>();

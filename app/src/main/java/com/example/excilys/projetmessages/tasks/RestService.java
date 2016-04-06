@@ -1,22 +1,21 @@
 package com.example.excilys.projetmessages.tasks;
 
 import com.example.excilys.projetmessages.mappers.InputStreamToString;
-import com.example.excilys.projetmessages.mappers.jsonToArrayList;
+import com.example.excilys.projetmessages.mappers.JsonToMessages;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
+
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.ArrayList;
@@ -131,13 +130,13 @@ public class RestService {
         return result;
     }
 
-    static public ArrayList<HashMap<String, String> > getMessages() {
+    static public ArrayList<HashMap<String, String> > getMessages(int limit, int offset) {
 
         ArrayList<HashMap<String, String> > result;
 
-        String jsonString = doGet("/messages?&limit=" + 10 + "&offset=" + 0);
+        String jsonString = doGet("/messages?&limit=" + limit + "&offset=" + offset);
 
-        result = jsonToArrayList.convert(jsonString);
+        result = JsonToMessages.convert(jsonString);
 
         return result;
     }

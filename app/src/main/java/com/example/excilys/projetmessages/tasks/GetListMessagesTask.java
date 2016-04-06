@@ -16,17 +16,17 @@ import java.util.HashMap;
 /**
  * AsyncTask récupérant les messages
  */
-public class GetListMessagesTask extends AsyncTask<String, Void, ArrayList<HashMap<String, String> >> {
+public class GetListMessagesTask extends AsyncTask<Void, Void, ArrayList<HashMap<String, String> >> {
 
     private ListMessagesActivity act;
 
-    private String username;
-    private String password;
+    private int limit;
+    private int offset;
 
-    public GetListMessagesTask(ListMessagesActivity act, String username, String password) {
+    public GetListMessagesTask(ListMessagesActivity act, int limit, int offset) {
         this.act = act;
-        this.username = username;
-        this.password = password;
+        this.limit = limit;
+        this.offset = offset;
     }
 
     @Override
@@ -34,39 +34,12 @@ public class GetListMessagesTask extends AsyncTask<String, Void, ArrayList<HashM
 
     }
 
+
     @Override
-    protected ArrayList<HashMap<String, String> > doInBackground(String... strings) {
+    protected ArrayList<HashMap<String, String> > doInBackground(Void... params) {
 
-        String result = null;
+        return RestService.getMessages(limit, offset);
 
-        return RestService.getMessages();
-
-        /*
-        URL url = null;
-        HttpURLConnection urlConnection = null;
-
-        try {
-            url = new URL("http://formation-android-esaip.herokuapp.com/messages/" + username + "/" + password);
-
-            urlConnection = (HttpURLConnection) url.openConnection();
-
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-            result = InputStreamToString.convert(in);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-
-        } finally {
-
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-
-        }
-
-        */
     }
 
     @Override
