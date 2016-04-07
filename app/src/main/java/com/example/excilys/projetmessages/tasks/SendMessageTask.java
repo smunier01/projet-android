@@ -10,7 +10,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 
 /**
- * AsyncTask permettant d'envoyer un message
+ * AsyncTask to send message
  */
 public class SendMessageTask extends AsyncTask<String, Void, Void> {
 

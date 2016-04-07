@@ -10,17 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.excilys.projetmessages.R;
-import com.example.excilys.projetmessages.tasks.GetListMessagesTask;
+
 import com.example.excilys.projetmessages.tasks.LogTask;
 import com.example.excilys.projetmessages.tasks.RegisterTask;
-import com.example.excilys.projetmessages.tasks.RestService;
 
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.concurrent.ExecutionException;
 
 /**
- * Activité permettant de s'identifier
+ * Activity to log or register user
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -75,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        // Si les informations sont correctes, ont enregistre username/password dans les SharedPreferences
-        // et on envoit vers le menu
         if (result) {
 
             SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.sharedPrefFile), Context.MODE_PRIVATE);
@@ -108,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!"".equals(username) && !"".equals(password)) {
 
-            //RestService.register(username, password);
             RegisterTask p = new RegisterTask(this, username, password);
             p.execute();
         }

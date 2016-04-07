@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Activité affichant la liste des messages
+ * Activity displaying the list of messages
  */
 public class ListMessagesActivity extends ListActivity {
 
@@ -38,7 +38,7 @@ public class ListMessagesActivity extends ListActivity {
 
         username = settings.getString("username", "");
 
-        // Task récupérant la liste des messages
+        // Task to get the list of messages
 
         GetListMessagesTask p = new GetListMessagesTask(this, 10, 0);
         p.execute();
@@ -46,8 +46,8 @@ public class ListMessagesActivity extends ListActivity {
     }
 
     /**
-     * Met à jour la liste des messages
-     * @param messages ArrayList contenant les messages
+     * Update list of messages
+     * @param messages ArrayList containing the messages
      */
     public void updateMessages(ArrayList<HashMap<String, String> > messages) {
 
@@ -58,7 +58,7 @@ public class ListMessagesActivity extends ListActivity {
 
 
     /**
-     * Event listener actualisant la liste des messages
+     * Event listener updating the list of messages
      * @param view
      */
     public void refreshOnClick(View view) {

@@ -57,7 +57,7 @@ public class RestService {
             writer.write(param.toString());
             writer.close();
 
-            int HttpResult =urlConnection.getResponseCode();
+            int HttpResult = urlConnection.getResponseCode();
 
             System.out.println(HttpResult);
             /*

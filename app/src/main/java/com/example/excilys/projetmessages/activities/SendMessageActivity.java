@@ -31,7 +31,7 @@ public class SendMessageActivity extends AppCompatActivity {
     }
 
     /**
-     * Envoi le message
+     * Send the message when clicking on the button
      * @param view
      */
     public void sendMessageOnClick(View view) {

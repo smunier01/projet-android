@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * AsyncTask récupérant les messages
+ * AsyncTask getting the messages
  */
 public class GetListMessagesTask extends AsyncTask<Void, Void, ArrayList<HashMap<String, String> >> {
 

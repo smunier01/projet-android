@@ -11,12 +11,12 @@ import android.view.View;
 import com.example.excilys.projetmessages.R;
 
 /**
- * Menu principal
+ * Main Menu
  */
 public class MenuActivity extends AppCompatActivity {
 
     /**
-     * Pour aller vers la liste des messages
+     * To go to the list of messages
      * @param v
      */
     public void listMessagesOnClick(View v) {
@@ -26,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     /**
-     * Pour aller vers le formulaire de création de message
+     * To go to the message creation form
      * @param v
      */
     public void sendMessageOnClick(View v) {

@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import com.example.excilys.projetmessages.activities.MainActivity;
 
 /**
- * AsyncTask permettant de s'identifier
+ * AsyncTask to log user
  */
 public class LogTask extends AsyncTask<String, Void, Boolean> {
 

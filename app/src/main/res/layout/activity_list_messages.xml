@@ -16,6 +16,12 @@
         android:layout_marginBottom="150px"
         />
 
+    <fragment android:name="com.example.excilys.projetmessages.fragments.TestFragment"
+        android:id="@+id/headlines_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_alignBottom="@android:id/list"
+        tools:layout="@layout/fragment_send_message" />
 
     <LinearLayout
         android:orientation="horizontal"

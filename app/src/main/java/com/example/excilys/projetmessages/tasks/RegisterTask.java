@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import com.example.excilys.projetmessages.activities.MainActivity;
 
 /**
- * Created by excilys on 07/04/16.
+ * AsyncTask to register user
  */
 public class RegisterTask extends AsyncTask<String, Void, Boolean> {
 
