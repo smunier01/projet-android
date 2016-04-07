@@ -44,6 +44,7 @@ public class GetListMessagesTask extends AsyncTask<Void, Void, ArrayList<HashMap
 
     @Override
     protected void onPostExecute(ArrayList<HashMap<String, String> > messages) {
+
         super.onPostExecute(messages);
 
         act.updateMessages(messages);

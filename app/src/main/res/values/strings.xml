@@ -11,4 +11,5 @@
     <string name="clearButtonText">vider</string>
     <string name="sendButtonText">envoyer</string>
     <string name="refreshButtonLabel">Rafraichir</string>
+    <string name="buttonRegister">inscription</string>
 </resources>

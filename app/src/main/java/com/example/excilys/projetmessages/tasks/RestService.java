@@ -19,6 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import java.util.UUID;
@@ -35,7 +36,7 @@ public class RestService {
         });
     }
 
-    static public String doPost(String path, HashMap<String, String> params) {
+    static public String doPost(String path, JSONObject param) {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String jsonString = null;
@@ -52,12 +53,6 @@ public class RestService {
             urlConnection.setRequestProperty("Content-Type", "application/json");
             urlConnection.connect();
 
-            JSONObject param = new JSONObject();
-            param.put("uuid", UUID.randomUUID().toString());
-            param.put("login", params.get("username"));
-            param.put("message", params.get("message"));
-
-
             OutputStreamWriter writer = new OutputStreamWriter(urlConnection.getOutputStream());
             writer.write(param.toString());
             writer.close();
@@ -65,7 +60,7 @@ public class RestService {
             int HttpResult =urlConnection.getResponseCode();
 
             System.out.println(HttpResult);
-
+            /*
             if(HttpResult == HttpURLConnection.HTTP_OK){
                 BufferedReader br = new BufferedReader(new InputStreamReader(
                         urlConnection.getInputStream(),"utf-8"));
@@ -80,8 +75,8 @@ public class RestService {
             }else{
                 System.out.println(urlConnection.getResponseMessage());
             }
-
-        } catch (IOException | JSONException e) {
+            */
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -138,15 +133,40 @@ public class RestService {
 
         result = JsonToMessages.convert(jsonString);
 
+        Collections.reverse(result);
+
         return result;
     }
 
     static public void sendMessage(String username, String message) {
 
-        HashMap<String, String> tmp = new HashMap<>();
-        tmp.put("username", username);
-        tmp.put("message", message);
+        try {
+            JSONObject param = new JSONObject();
+            param.put("uuid", UUID.randomUUID().toString());
+            param.put("login", username);
+            param.put("message", message);
 
-        doPost("/messages", tmp);
+            doPost("/messages", param);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    static public void register(String username, String password) {
+        try {
+
+            System.out.println(username + " " + password);
+
+            JSONObject param = new JSONObject();
+            param.put("login", username);
+            param.put("password", password);
+
+            doPost("/register", param);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

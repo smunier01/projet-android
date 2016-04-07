@@ -10,7 +10,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.excilys.projetmessages.R;
+import com.example.excilys.projetmessages.tasks.GetListMessagesTask;
 import com.example.excilys.projetmessages.tasks.LogTask;
+import com.example.excilys.projetmessages.tasks.RegisterTask;
+import com.example.excilys.projetmessages.tasks.RestService;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
@@ -41,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Quand on click sur le bouton "clear"
+     * When clicking on a the clear button
      *
      * @param v
      */
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Quand on click sur le bouton "envoyer" pour s'identifier
+     * log user when clicking on the "send" button
      *
      * @param v
      */
@@ -90,6 +93,25 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    /**
+     * When clicking on the register button
+     * @param v
+     */
+    public void registerOnClick(View v) {
+
+        System.out.println("hello");
+
+        String username = usernameField.getText().toString();
+        String password = passwordField.getText().toString();
+
+        if (!"".equals(username) && !"".equals(password)) {
+
+            //RestService.register(username, password);
+            RegisterTask p = new RegisterTask(this, username, password);
+            p.execute();
+        }
     }
 
     @Override
