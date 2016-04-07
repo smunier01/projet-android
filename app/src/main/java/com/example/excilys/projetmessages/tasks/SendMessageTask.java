@@ -43,6 +43,8 @@ public class SendMessageTask extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void v) {
         super.onPostExecute(v);
-        act.messageSent();
+        if( act != null) {
+            act.messageSent();
+        }
     }
 }

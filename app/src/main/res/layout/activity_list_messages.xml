@@ -9,33 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activities.ListMessagesActivity">
 
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/test"
+        android:id="@+id/refreshButton"
+        android:onClick="refreshOnClick"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@android:id/list"
+        android:alpha="0.2"/>
+
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="150px"
-        />
+        android:layout_marginBottom="50dp"/>
 
-    <fragment android:name="com.example.excilys.projetmessages.fragments.TestFragment"
+
+    <fragment android:name="com.example.excilys.projetmessages.fragments.SendMessageFragment"
         android:id="@+id/headlines_fragment"
         android:layout_width="match_parent"
-        android:layout_height="150px"
-        android:layout_alignBottom="@android:id/list"
-        tools:layout="@layout/fragment_send_message" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="150px"
+        android:layout_height="50dp"
+        tools:layout="@layout/fragment_send_message2"
         android:layout_alignParentBottom="true"
-        android:id="@+id/linearLayout">
+        android:layout_alignParentStart="true" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/refreshButtonLabel"
-            android:id="@+id/refreshButton"
-            android:onClick="refreshOnClick"/>
-    </LinearLayout>
 
 </RelativeLayout>
