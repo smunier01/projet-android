@@ -59,23 +59,10 @@ public class RestService {
 
             int HttpResult = urlConnection.getResponseCode();
 
-            System.out.println(HttpResult);
-            /*
-            if(HttpResult == HttpURLConnection.HTTP_OK){
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        urlConnection.getInputStream(),"utf-8"));
-                String line = null;
-                while ((line = br.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                br.close();
+            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
 
-                System.out.println("" + sb.toString());
+            jsonString = InputStreamToString.convert(in);
 
-            }else{
-                System.out.println(urlConnection.getResponseMessage());
-            }
-            */
         } catch (IOException e) {
             e.printStackTrace();
         }

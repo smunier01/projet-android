@@ -25,29 +25,31 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_menu_rotate"
+        android:src="@android:drawable/ic_menu_revert"
         app:layout_anchorGravity="bottom|end"
         android:onClick="refreshOnClick"
         android:layout_alignParentTop="true"
+        app:fabSize="mini"
+        app:backgroundTint="#8cc664"
         android:layout_alignEnd="@+id/headlines_fragment" />
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="28dp"
         android:layout_below="@+id/fab"
         android:layout_alignEnd="@+id/headlines_fragment"
         android:layout_marginTop="21dp"
         android:layout_above="@+id/headlines_fragment"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:divider="@null" />
 
 
     <fragment android:name="com.example.excilys.projetmessages.fragments.SendMessageFragment"
         android:id="@+id/headlines_fragment"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        tools:layout="@layout/fragment_send_message2"
+        tools:layout="@layout/fragment_send_message"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 

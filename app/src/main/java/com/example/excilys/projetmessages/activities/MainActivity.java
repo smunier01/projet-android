@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void registerOnClick(View v) {
 
-        System.out.println("hello");
-
         String username = usernameField.getText().toString();
         String password = passwordField.getText().toString();
 

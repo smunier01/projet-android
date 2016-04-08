@@ -34,7 +34,6 @@ public class GetListMessagesTask extends AsyncTask<Void, Void, ArrayList<HashMap
 
     }
 
-
     @Override
     protected ArrayList<HashMap<String, String> > doInBackground(Void... params) {
 
