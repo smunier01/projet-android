@@ -58,33 +58,55 @@ public class MainActivity extends AppCompatActivity {
     public void sendOnClick(View v) {
         Toast.makeText(getApplicationContext(), "Toast !", Toast.LENGTH_SHORT).show();
 
-        LogTask p = new LogTask(this);
-        p.execute();
         boolean result = false;
+        boolean cancel = false;
 
-        try {
+        String username = usernameField.getText().toString();
+        String password = passwordField.getText().toString();
 
-            result = p.get();
+        if ("".equals(username)) {
 
-        } catch (ExecutionException | InterruptedException e) {
-
-            e.printStackTrace();
+            usernameField.setError(getString(R.string.notemptyinput));
+            cancel = true;
 
         }
 
-        if (result) {
+        if ("".equals(password)) {
 
-            SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.sharedPrefFile), Context.MODE_PRIVATE);
+            passwordField.setError(getString(R.string.notemptyinput));
+            cancel = true;
 
-            SharedPreferences.Editor editor = settings.edit();
-            editor.putString("username", usernameField.getText().toString());
-            editor.putString("password", passwordField.getText().toString());
+        }
 
-            editor.commit();
+        if (!cancel) {
 
-            Intent intent = new Intent(this, MenuActivity.class);
+            try {
 
-            startActivity(intent);
+                LogTask p = new LogTask(this);
+                p.execute();
+                result = p.get();
+
+            } catch (ExecutionException | InterruptedException e) {
+
+                e.printStackTrace();
+
+            }
+
+            if (result) {
+
+                SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.sharedPrefFile), Context.MODE_PRIVATE);
+
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putString("username", usernameField.getText().toString());
+                editor.putString("password", passwordField.getText().toString());
+
+                editor.commit();
+
+                Intent intent = new Intent(this, MenuActivity.class);
+
+                startActivity(intent);
+
+            }
 
         }
 

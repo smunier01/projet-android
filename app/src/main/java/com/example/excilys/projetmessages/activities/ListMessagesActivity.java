@@ -11,11 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.example.excilys.projetmessages.R;
 import com.example.excilys.projetmessages.tasks.GetListMessagesTask;
+import com.example.excilys.projetmessages.utils.EndlessScrollListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +30,8 @@ import java.util.Map;
 public class ListMessagesActivity extends ListActivity {
 
     private String username;
+    private MyAdapter adapter;
+    private ArrayList<HashMap<String, String> > messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,20 @@ public class ListMessagesActivity extends ListActivity {
         SharedPreferences settings = getSharedPreferences(getResources().getString(R.string.sharedPrefFile), Context.MODE_PRIVATE);
 
         username = settings.getString("username", "");
+
+        ListView lvItems = getListView();
+
+        final ListMessagesActivity context = this;
+
+        lvItems.setOnScrollListener(new EndlessScrollListener(1) {
+
+            @Override
+            public void loadMore(int page, int totalItemsCount) {
+                GetListMessagesTask p = new GetListMessagesTask(context, 10, 10 * (page-1));
+                p.execute();
+            }
+
+        });
 
         // Task to get the list of messages
 
@@ -51,9 +69,22 @@ public class ListMessagesActivity extends ListActivity {
      */
     public void updateMessages(ArrayList<HashMap<String, String> > messages) {
 
-        ListAdapter adapter = new MyAdapter(messages);
+        if (adapter == null) {
 
-        setListAdapter(adapter);
+            this.messages = messages;
+
+            adapter = new MyAdapter(messages);
+
+            setListAdapter(adapter);
+
+        } else {
+
+            this.messages.addAll(messages);
+
+            adapter.notifyDataSetChanged();
+
+        }
+
     }
 
 
@@ -63,6 +94,7 @@ public class ListMessagesActivity extends ListActivity {
      */
     public void refreshOnClick(View view) {
 
+        this.messages.clear();
         GetListMessagesTask p = new GetListMessagesTask(this, 10, 0);
         p.execute();
 
@@ -73,6 +105,7 @@ public class ListMessagesActivity extends ListActivity {
         private ArrayList<HashMap<String, String> > messages;
 
         public MyAdapter(ArrayList<HashMap<String, String> > messages) {
+
             this.messages = messages;
         }
 
